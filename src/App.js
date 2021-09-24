@@ -4,6 +4,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { useState, useEffect } from "react";
 import { TimeStamp } from "./TimeStamp";
+import styles from "./css/main.module.scss";
 
 const Dictaphone = () => {
   const pullData = () => {
@@ -30,11 +31,8 @@ const Dictaphone = () => {
       //   setMancha((prev) => [...prev, transcript]);
       // }
       SpeechRecognition.stopListening();
+      resetTranscript();
     }, 3000);
-  };
-
-  const clear = () => {
-    setMancha(() => []);
   };
 
   const editIt = () => {
@@ -87,7 +85,7 @@ const Dictaphone = () => {
 
   // saving to local storage when ui changes
 
-  // problem because it fires at inital render splved with useEffect that changes state called initial render
+  // problem because it fires at inital render solved with useEffect that changes state called initial render
   useEffect(() => {
     if (mancha.at(-1) && !initialRender) {
       let month = mancha.at(-1).timeObj.month;
@@ -126,23 +124,31 @@ const Dictaphone = () => {
   }, []);
 
   return (
-    <div>
-      <p>Microphone: {listening ? "on" : "off"}</p>
-      <button onClick={record}>Start</button>
-      <button onClick={clear}>Clear</button>
-      <button onClick={editIt}>Edit</button>
+    <div className={styles.mainDiv}>
+      <div className={styles.column1}>
+        <div className={styles.manchaList}>
+          <ul>
+            {mancha.map((e) => (
+              <li key={e.id}>
+                {e.manch}{" "}
+                {edit && <button onClick={() => deleteEntry(e.id)}>x</button>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
-      <p>{transcript}</p>
+      <div className={styles.column2}>
+        <div className={styles.micAndTranscript}>
+          <p className={styles.micIndi}>
+            Microphone: {listening ? "on" : "off"}
+          </p>
+          <p>{transcript ? transcript : "$$"}</p>
+        </div>
 
-      <div>
-        <ul>
-          {mancha.map((e) => (
-            <li key={e.id}>
-              {e.manch}{" "}
-              {edit && <button onClick={() => deleteEntry(e.id)}>x</button>}
-            </li>
-          ))}
-        </ul>
+        <button onClick={record}>Start</button>
+
+        <button onClick={editIt}>Edit</button>
       </div>
     </div>
   );
