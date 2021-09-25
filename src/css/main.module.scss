@@ -1,34 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Gemunu+Libre&display=swap");
+
 * {
   margin: 0;
   padding: 0;
+
+  font-family: "Comfortaa", cursive;
+  font-weight: 600;
 }
 
 .mainDiv {
+  transition: 0.4s ease-out;
+  background-color: #cfe2e6;
+  color: #001427;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
   gap: 20px;
   justify-content: center;
   align-content: center;
   height: 100vh;
+  width: 100vw;
 }
 
-.column1 {
-  display: flex;
-  flex-direction: column;
+.mainDivRec {
+  transition: 0.4s ease-out;
+  background-color: #0c1014;
+  color: #cfe2e6;
+  display: grid;
+  grid-template-rows: 1fr 5fr 1fr;
+  gap: 20px;
   justify-content: center;
-  align-items: center;
   align-content: center;
-  height: 80vh;
-  overflow: scroll;
-  margin-top: 30px;
-}
-
-.column2 {
-  display: flex;
-
-  flex-direction: column;
-  justify-content: flex-end;
   height: 100vh;
+  width: 100vw;
 }
 
 .micAndTranscript {
@@ -37,4 +40,44 @@
 
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.micIndi {
+  margin-top: 20px;
+}
+
+#transcript {
+  margin-top: 10vh;
+}
+
+.buttonsCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.button {
+  height: 45px;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+
+li {
+  list-style-type: none;
+  padding: 2.5px;
+}
+.manchaList {
+  display: flex;
+
+  justify-content: center;
+  margin: 20px;
+  max-height: 100%;
+  margin-top: 70px;
+
+  align-items: center;
+  overflow: scroll;
 }
