@@ -63,6 +63,7 @@ const Dictaphone = () => {
     } else {
       setMainDisplay(mainDisplay + 1);
     }
+    setEdit(false);
   };
 
   const renderSwitch = (mainDis) => {

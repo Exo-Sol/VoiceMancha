@@ -7,6 +7,10 @@
   font-family: "Comfortaa", cursive;
   font-weight: 600;
 }
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
 
 .mainDiv {
   transition: 0.4s ease-out;
@@ -26,7 +30,7 @@
   background-color: #0c1014;
   color: #cfe2e6;
   display: grid;
-  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 6fr 1fr;
   gap: 20px;
   justify-content: center;
   align-content: center;
@@ -48,10 +52,14 @@
 
 .micIndi {
   margin-top: 20px;
+  opacity: 1;
 }
 
 #transcript {
   margin-top: 10vh;
+  opacity: 0.8;
+  font-size: 1.1em;
+  text-align: center;
 }
 
 .buttonsCont {
@@ -85,6 +93,14 @@ li {
   align-items: center;
   overflow: scroll;
 }
+.delButton {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+  border: none;
+}
 
 #total {
   font-size: 1.5em;
@@ -103,7 +119,7 @@ ul {
   height: 100%;
   padding: 10px;
   text-align: left;
-  width: 65vw;
+  width: 70vw;
 }
 
 p {
@@ -122,4 +138,16 @@ p {
   text-align: center;
   color: #684802;
   font-size: 0.8em;
+}
+
+.progBar {
+  height: 80%;
+}
+
+.progBar2 {
+  height: 90%;
+}
+
+.totDiv {
+  width: 60%;
 }
