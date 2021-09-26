@@ -11,6 +11,8 @@ import whiteMic from "./icons/mic-white.png";
 import clear from "./icons/clear.png";
 
 import BarChart from "./components/Bar";
+import Total from "./components/Total";
+import List from "./components/List";
 
 const Dictaphone = () => {
   const pullData = () => {
@@ -44,6 +46,7 @@ const Dictaphone = () => {
 
   const editIt = () => {
     setEdit(() => !edit);
+    setMainDisplay(2);
   };
 
   const deleteEntry = (id) => {
@@ -65,20 +68,11 @@ const Dictaphone = () => {
   const renderSwitch = (mainDis) => {
     switch (mainDis) {
       case 0:
-        return "total";
+        return <Total mancha={mancha} />;
       case 1:
         return <BarChart mancha={mancha} />;
       case 2:
-        return (
-          <ul>
-            {mancha.map((e) => (
-              <li key={e.id}>
-                {e.manch}{" "}
-                {edit && <button onClick={() => deleteEntry(e.id)}>x</button>}
-              </li>
-            ))}
-          </ul>
-        );
+        return <List mancha={mancha} edit={edit} deleteEntry={deleteEntry} />;
       default:
         return <></>;
     }

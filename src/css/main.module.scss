@@ -32,6 +32,10 @@
   align-content: center;
   height: 100vh;
   width: 100vw;
+
+  #total {
+    background-color: rgb(36, 44, 51);
+  }
 }
 
 .micAndTranscript {
@@ -80,4 +84,42 @@ li {
 
   align-items: center;
   overflow: scroll;
+}
+
+#total {
+  font-size: 1.5em;
+  padding: 50px;
+  border: 1px black dashed;
+  border-radius: 50%;
+  background-color: #cfe2e6;
+  opacity: 0.9;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  text-align: left;
+  width: 65vw;
+}
+
+p {
+  display: "inline";
+  font-size: 0.8em;
+  opacity: 0.5;
+  padding-right: 3px;
+}
+#num {
+  color: rgb(12, 54, 54);
+}
+
+#timeInfo {
+  color: rgb(12, 54, 54);
+  padding-left: 10px;
+  text-align: center;
+  color: #684802;
+  font-size: 0.8em;
 }
