@@ -2,6 +2,8 @@ import "./App.css";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { useTransition, animated } from "react-spring";
+
 import { useState, useEffect } from "react";
 import { TimeStamp } from "./TimeStamp";
 
@@ -31,7 +33,12 @@ const Dictaphone = () => {
   const [edit, setEdit] = useState(false);
   const [idToDelete, seIdToDelete] = useState(null);
   const [initialRender, setInitialRender] = useState(() => true);
-  const [mainDisplay, setMainDisplay] = useState(0);
+  const [mainDisplay, setMainDisplay] = useState(() => 0);
+
+  const transitions = useTransition(mainDisplay, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+  });
 
   const record = () => {
     SpeechRecognition.startListening({ language: "hr_HR" });
@@ -70,6 +77,7 @@ const Dictaphone = () => {
     switch (mainDis) {
       case 0:
         return <Total mancha={mancha} />;
+
       case 1:
         return <BarChart mancha={mancha} />;
       case 2:
@@ -162,13 +170,20 @@ const Dictaphone = () => {
           <p className={styles.micIndi}>
             Microphone: {listening ? "on" : "off"}
           </p>
-          <p id={styles.transcript}>{transcript ? transcript : "$$"}</p>
+          <p id={styles.transcript}>{transcript ? transcript : "$  $"}</p>
         </div>
       </>
 
-      <div className={styles.manchaList} onClick={changeMainDisply}>
-        {renderSwitch(mainDisplay)}
-      </div>
+      {transitions((style, item) => (
+        <animated.div
+          className={styles.manchaList}
+          onClick={changeMainDisply}
+          style={style}
+        >
+          {renderSwitch(mainDisplay)}
+        </animated.div>
+      ))}
+
       <div className={styles.buttonsCont}>
         <img
           src={listening ? whiteMic : blackMic}
