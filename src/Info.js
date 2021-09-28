@@ -14,12 +14,12 @@ import PercentageToday from "./infoComponents/PercentageToday";
 //     "prosjek četvrtak",
 
 const Info = ({ command }) => {
-  const storage = { ...localStorage };
-  console.log(localStorage);
+  // const storage = { ...localStorage };
+  // console.log(localStorage);
 
-  for (const data in storage) {
-    console.log(`${data}: ${storage[data]}`);
-  }
+  // for (const data in storage) {
+  //   console.log(`${data}: ${storage[data]}`);
+  // }
 
   const renderSwitch = (com) => {
     switch (com) {

@@ -111,7 +111,7 @@ const AppMain = ({ voiceCommands }) => {
       setMancha((prev) => [
         ...prev,
         {
-          manch: transcript,
+          manch: parseInt(transcript),
           timeObj: TimeStamp(),
           id: new Date().getTime(),
         },
