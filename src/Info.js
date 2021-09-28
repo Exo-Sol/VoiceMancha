@@ -1,5 +1,6 @@
 import React from "react";
 import PercentageToday from "./infoComponents/PercentageToday";
+import MonthlyDisplay from "./infoComponents/MonthlyDisplay";
 // import styles from "./css/info.module.scss";
 
 // "mjesečni prikaz",
@@ -13,7 +14,7 @@ import PercentageToday from "./infoComponents/PercentageToday";
 //     "prosjek srijeda",
 //     "prosjek četvrtak",
 
-const Info = ({ command }) => {
+const Info = ({ command, resetToMain }) => {
   // const storage = { ...localStorage };
   // console.log(localStorage);
 
@@ -24,10 +25,10 @@ const Info = ({ command }) => {
   const renderSwitch = (com) => {
     switch (com) {
       case "prosjek danas":
-        return <PercentageToday />;
+        return <PercentageToday resetToMain={resetToMain} />;
 
-      case 1:
-        return <></>;
+      case "mjesečni prikaz":
+        return <MonthlyDisplay resetToMain={resetToMain} />;
       case 2:
         return <></>;
       default:

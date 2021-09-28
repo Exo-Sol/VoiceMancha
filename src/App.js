@@ -25,10 +25,14 @@ function App() {
     });
   };
 
+  const resetToMain = () => {
+    setCommand("");
+  };
+
   return (
     <div className="App">
       {command ? (
-        <Info command={command} />
+        <Info command={command} resetToMain={resetToMain} />
       ) : (
         <AppMain voiceCommands={voiceCommands} />
       )}
