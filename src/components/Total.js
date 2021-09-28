@@ -11,7 +11,7 @@ const Total = ({ mancha }) => {
     const manche = mancha.map((e) => {
       return parseInt(e.manch);
     });
-    if (manche[0]) {
+    if (manche[0] || manche[0] === 0) {
       const reducer = (prev, cur) => prev + cur;
       const tot = manche.reduce(reducer);
       if (tot <= 100) {
@@ -19,7 +19,11 @@ const Total = ({ mancha }) => {
       } else {
         return [100, tot - 100];
       }
-    } else return [0, 0];
+    } else {
+      console.log(manche[0]);
+
+      return [0, 0];
+    }
   };
 
   // return <div id={styles.total}>{`${calcTotal()}`}</div>;
