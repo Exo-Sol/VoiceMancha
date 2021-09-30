@@ -26,9 +26,11 @@ const List = ({ mancha, edit, deleteEntry }) => {
       {mancha.map((e, i) => (
         <li key={e.id}>
           <div>
-            <p style={styleP} id={styles.num}>{`${i + 1}.`}</p>
+            <p className={styles.listP} style={styleP} id={styles.num}>{`${
+              i + 1
+            }.`}</p>
             {` ${e.manch}`}
-            <p style={styleP} id={styles.timeInfo}>{`${
+            <p className={styles.listP} style={styleP} id={styles.timeInfo}>{`${
               e.timeObj.hour
             }:${zeroNum(e.timeObj.minutes)}`}</p>
           </div>

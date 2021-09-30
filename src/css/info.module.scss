@@ -2,14 +2,81 @@
 * {
   margin: 0;
   padding: 0;
-
-  font-family: "Comfortaa", cursive;
-  font-weight: 600;
-  background-color: #cfe2e6;
-  color: #001427;
 }
 
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
+}
+
+.main {
+  font-family: "Comfortaa", cursive;
+
+  font-weight: 600;
+  background-color: #cfe2e6;
+  color: #001427;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+
+  overflow: hidden;
+  gap: 9vh;
+}
+
+.swipeMonth {
+  margin-top: 40px;
+
+  font-size: 2em;
+  opacity: 0.5;
+
+  p {
+    display: inline-block;
+    opacity: 1;
+  }
+}
+#month {
+  display: inline-block;
+  font-size: 1.1em;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#swipeIcon {
+  height: 50px;
+  margin-top: 25px;
+  opacity: 0.15;
+}
+
+.swipeArrows1 {
+  display: inline;
+  opacity: 0.3;
+}
+
+.swipeArrows2 {
+  display: inline;
+  opacity: 0.5;
+}
+
+.percToday {
+  font-family: "Comfortaa", cursive;
+  font-weight: 600;
+  background-color: #cfe2e6;
+  color: #001427;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 10vh;
+  font-size: 1.5em;
+}
+
+.backButt {
+  padding: 5px 10px;
+  background-color: #001427;
+  color: #cfe2e6;
+  border-radius: 15%;
+  opacity: 0.9;
 }

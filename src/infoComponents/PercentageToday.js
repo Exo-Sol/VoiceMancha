@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TimeStamp } from "../TimeStamp";
+import styles2 from "../css/info.module.scss";
 
 const PercentageToday = ({ resetToMain }) => {
   const [percToday, setPercToday] = useState(0);
@@ -36,10 +37,22 @@ const PercentageToday = ({ resetToMain }) => {
     resetToMain();
   }, [2500]);
 
+  const percFix = (perc) => {
+    let perc2 = perc.toFixed(2);
+    let stringPerc = toString(perc2);
+    console.log(perc);
+    if (stringPerc[-1] === "0") {
+      stringPerc.pop();
+      return stringPerc;
+    } else {
+      return perc;
+    }
+  };
+
   return (
-    <>
-      <div>{percToday.toFixed(2)}</div>
-    </>
+    <div className={styles2.percToday}>
+      <div>{percFix(percToday)}</div>
+    </div>
   );
 };
 
