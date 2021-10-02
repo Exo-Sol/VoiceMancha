@@ -8,13 +8,15 @@ function App() {
     "mjesečni prikaz",
     "prosjek danas",
     "info",
-    "prosjek petak",
-    "prosjek subota",
-    "prosjek nedilja",
-    "prosjek ponediljak",
-    "prosjek utorak",
-    "prosjek srijeda",
-    "prosjek četvrtak",
+    "broj dostava",
+    "glasovne naredbe",
+    // "prosjek petak",
+    // "prosjek subota",
+    // "prosjek nedilja",
+    // "prosjek ponediljak",
+    // "prosjek utorak",
+    // "prosjek srijeda",
+    // "prosjek četvrtak",
   ];
 
   const voiceCommands = (transcript) => {

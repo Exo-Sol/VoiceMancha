@@ -45,7 +45,7 @@ const PercentageToday = ({ resetToMain }) => {
       stringPerc.pop();
       return stringPerc;
     } else {
-      return perc;
+      return perc2;
     }
   };
 
