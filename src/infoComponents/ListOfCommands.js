@@ -10,7 +10,7 @@ const ListOfCommands = ({ redirect }) => {
         {list.map((ele, ind) => {
           return (
             // it needs to acess component of that command
-            <li onClick={(ele) => redirect(ele)} key={ind}>
+            <li onClick={() => redirect(ele)} key={ind}>
               {ele}
             </li>
           );

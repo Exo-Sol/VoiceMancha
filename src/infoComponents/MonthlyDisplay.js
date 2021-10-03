@@ -12,10 +12,10 @@ const MonthlyDisplay = ({ resetToMain }) => {
   const [selectedMonth, setSelectedMonth] = useState(() => TimeStamp().month);
 
   const handlers = useSwipeable({
-    onSwipedRight: (eventData) =>
+    onSwipedLeft: (eventData) =>
       setSelectedMonth(() => monthFwd(selectedMonth, eventData)),
     ...config,
-    onSwipedLeft: (eventData) =>
+    onSwipedRight: (eventData) =>
       setSelectedMonth(() => monthBack(selectedMonth, eventData)),
     ...config,
   });
@@ -45,10 +45,12 @@ const MonthlyDisplay = ({ resetToMain }) => {
           return ele.manch;
         }
       });
-      const tot = todayManch.reduce((a, b) => a + b, 0);
-      const month = parseInt(e.split(".")[0]);
-      const day = parseInt(e.split(".")[1]);
-      setDateManchObj((prev) => [...prev, [{ day, month }, tot]]);
+      if (parsedStorage[0].timeObj.month === selectedMonth) {
+        const tot = todayManch.reduce((a, b) => a + b, 0);
+        const month = parseInt(e.split(".")[0]);
+        const day = parseInt(e.split(".")[1]);
+        setDateManchObj((prev) => [...prev, [{ day, month }, tot]]);
+      }
     });
     return () => {
       setDateManchObj([]);
@@ -56,21 +58,15 @@ const MonthlyDisplay = ({ resetToMain }) => {
   }, [selectedMonth]);
 
   const chartData = {
-    labels: dateManchObj
-      .slice(0)
-      .reverse()
-      .map((e) => {
-        return `${e[0].day}.`;
-      }),
+    labels: dateManchObj.map((e) => {
+      return `${e[0].day}.`;
+    }),
     datasets: [
       {
         label: "KN",
-        data: dateManchObj
-          .slice(0)
-          .reverse()
-          .map((e) => {
-            return e[1];
-          }),
+        data: dateManchObj.map((e) => {
+          return e[1];
+        }),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -94,7 +90,7 @@ const MonthlyDisplay = ({ resetToMain }) => {
 
   return (
     <div className={styles2.main}>
-      <h1>hellou</h1>
+      <h3 style={{ paddingTop: "30px" }}>Mjesečni prikaz</h3>
 
       <Bar data={chartData} height={"200px"} />
       <div>

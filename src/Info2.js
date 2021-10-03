@@ -18,7 +18,7 @@ import ListOfCommands from "./infoComponents/ListOfCommands";
 //     "prosjek srijeda",
 //     "prosjek četvrtak",
 
-const Info = ({ command, resetToMain, redirect }) => {
+const Info2 = ({ command, resetToMain, redirect }) => {
   const [changeInfo, setChangeInfo] = useState(<></>);
 
   // const storage = { ...localStorage };
@@ -53,4 +53,4 @@ const Info = ({ command, resetToMain, redirect }) => {
   return <div>{changeInfo}</div>;
 };
 
-export default Info;
+export default Info2;
