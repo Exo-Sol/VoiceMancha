@@ -3,6 +3,7 @@ import PercentageToday from "./infoComponents/PercentageToday";
 import MonthlyDisplay from "./infoComponents/MonthlyDisplay";
 import DayEntriesNum from "./infoComponents/DayEntriesNum";
 import ListOfCommands from "./infoComponents/ListOfCommands";
+import About from "./infoComponents/About";
 // import styles from "./css/info.module.scss";
 
 // "mjesečni prikaz",
@@ -41,6 +42,8 @@ const Info = ({ command, resetToMain, redirect }) => {
         return setChangeInfo(
           <ListOfCommands resetToMain={resetToMain} redirect={redirect} />
         );
+      case "info":
+        return setChangeInfo(<About resetToMain={resetToMain} />);
       default:
         return setChangeInfo(<></>);
     }

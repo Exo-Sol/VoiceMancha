@@ -94,3 +94,104 @@
   display: grid;
   grid-template-columns: 1fr;
 }
+
+///////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+@keyframes oscil1 {
+  from {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+  25% {
+    transform: rotate(170deg);
+    animation-timing-function: cubic-bezier(0.7, 0, 0.9, 0.7);
+  }
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+  75% {
+    transform: rotate(-170deg);
+    animation-timing-function: cubic-bezier(0.7, 0, 0.9, 0.7);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    opacity: 0.1;
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+  50% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 0.8;
+    animation-timing-function: cubic-bezier(0.7, 0, 0.9, 0.7);
+  }
+  0% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    opacity: 0.1;
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+}
+
+@keyframes glow {
+  100% {
+    opacity: 0.3;
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+  50% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.7, 0, 0.9, 0.7);
+  }
+  0% {
+    opacity: 0.3;
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+}
+
+.logoDiv {
+  background-color: #cfe2e6;
+  color: #001427;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding-top: 7vh;
+
+  .logo {
+    -webkit-animation: spin 6s ease-in-out infinite;
+    -moz-animation: spin 6s ease-in-out infinite;
+    animation: spin 6s ease-in-out infinite;
+    height: 300px;
+    width: 300px;
+  }
+
+  .info {
+    position: fixed;
+    bottom: 15px;
+    margin-left: 10px;
+    width: 100%;
+    font-size: 14px;
+    animation: glow 6s ease-in-out infinite;
+    margin-bottom: 30vh;
+  }
+}
