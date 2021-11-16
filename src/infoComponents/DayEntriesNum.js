@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TimeStamp } from "../TimeStamp";
 import styles2 from "../css/info.module.scss";
+import { useTransition, animated } from "react-spring";
 
 const DayEntriesNum = ({ resetToMain }) => {
   const dateToday = `${TimeStamp().month}.${TimeStamp().day}`;
@@ -9,6 +10,12 @@ const DayEntriesNum = ({ resetToMain }) => {
   const retrivedDates = Object.keys(storage);
 
   const [countNum, setCountNum] = useState(0);
+
+  const transitions = useTransition(countNum, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    delay: 300,
+  });
 
   useEffect(() => {
     retrivedDates.forEach((e) => {
@@ -28,9 +35,20 @@ const DayEntriesNum = ({ resetToMain }) => {
 
   setTimeout(() => {
     resetToMain();
-  }, [2500]);
+  }, [5000]);
 
-  return <div className={styles2.percToday}>{countNum}</div>;
+  const reset = () => {
+    resetToMain();
+  };
+
+  return transitions((style, item) => (
+    <animated.div onClick={reset} className={styles2.percToday} style={style}>
+      <div> {countNum}</div>
+    </animated.div>
+  ));
+  // <div onClick={reset} className={styles2.percToday}>
+  //   {countNum}
+  // </div>
 };
 
 export default DayEntriesNum;

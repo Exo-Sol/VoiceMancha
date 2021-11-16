@@ -1,10 +1,11 @@
-import React from "react";
 import styles from "../css/main.module.scss";
 import {
   CircularProgressbarWithChildren,
   CircularProgressbar,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+import React, { useState, useEffect } from "react";
 
 const Total = ({ mancha }) => {
   const calcTotal = () => {
@@ -38,11 +39,13 @@ const Total = ({ mancha }) => {
           path: {
             // Path color
             stroke: `rgba(75,170,186, ${calcTotal()[0] / 100 + 0.2})`,
+            transition: "stroke-dashoffset 1s",
           },
           trail: {
             // Trail color
             stroke: "#d6d6d6",
           },
+
           text: {
             // Text color
             fill: "#001427",
@@ -58,11 +61,13 @@ const Total = ({ mancha }) => {
             path: {
               // Path color
               stroke: `rgba(30,56,119, ${calcTotal()[1] / 100 + 0.2})`,
+              transition: "stroke-dashoffset 1s",
             },
             trail: {
               // Trail color
               stroke: "#d6d6d6",
             },
+
             text: {
               // Text color
               fill: "#001427",

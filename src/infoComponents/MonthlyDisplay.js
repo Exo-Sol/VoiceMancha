@@ -10,6 +10,7 @@ import swipe from "../icons/swipe.png";
 const MonthlyDisplay = ({ resetToMain }) => {
   const [dateManchObj, setDateManchObj] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(() => TimeStamp().month);
+  const [sumPerc, setSumPerc] = useState(true);
 
   const handlers = useSwipeable({
     onSwipedLeft: (eventData) =>
@@ -33,7 +34,19 @@ const MonthlyDisplay = ({ resetToMain }) => {
   };
 
   const storage = { ...localStorage };
-  const retrivedDates = Object.keys(storage);
+  const retrivedDatesUnsorted = Object.keys(storage);
+  console.log(retrivedDatesUnsorted);
+
+  const retrivedDates = retrivedDatesUnsorted.sort(
+    (a, b) => a.split(".")[1] - b.split(".")[1]
+  );
+  console.log(retrivedDates);
+
+  // split(".")[1]
+
+  const changeBar = () => {
+    setSumPerc(!sumPerc);
+  };
 
   useEffect(() => {
     retrivedDates.forEach((e) => {
@@ -47,15 +60,22 @@ const MonthlyDisplay = ({ resetToMain }) => {
       });
       if (parsedStorage[0].timeObj.month === selectedMonth) {
         const tot = todayManch.reduce((a, b) => a + b, 0);
+        const num = todayManch.length;
+
+        const percen = tot / num;
         const month = parseInt(e.split(".")[0]);
         const day = parseInt(e.split(".")[1]);
-        setDateManchObj((prev) => [...prev, [{ day, month }, tot]]);
+        if (sumPerc) {
+          setDateManchObj((prev) => [...prev, [{ day, month }, tot]]);
+        } else {
+          setDateManchObj((prev) => [...prev, [{ day, month }, percen]]);
+        }
       }
     });
     return () => {
       setDateManchObj([]);
     };
-  }, [selectedMonth]);
+  }, [selectedMonth, sumPerc]);
 
   const chartData = {
     labels: dateManchObj.map((e) => {
@@ -108,6 +128,13 @@ const MonthlyDisplay = ({ resetToMain }) => {
       </div>
       <button className={styles2.backButt} onClick={resetToMain}>
         back
+      </button>
+      <button
+        className={styles2.backButt}
+        id={styles2.percButton}
+        onClick={changeBar}
+      >
+        {sumPerc ? "∑" : "%"}
       </button>
     </div>
   );

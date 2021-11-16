@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 const BarChart = ({ mancha }) => {
   const chartData = {
     labels: mancha.map((e) => {
-      return `${e.timeObj.hour}.${e.timeObj.minutes}`;
+      return `${e.timeObj.hour}:${e.timeObj.minutes}`;
     }),
     datasets: [
       {

@@ -43,13 +43,6 @@ const AppMain = ({ voiceCommands }) => {
 
   const record = () => {
     SpeechRecognition.startListening({ language: "hr_HR" });
-    setTimeout(() => {
-      // if (!isNaN(parseInt(transcript))) {
-      //   setMancha((prev) => [...prev, transcript]);
-      // }
-      SpeechRecognition.stopListening();
-      resetTranscript();
-    }, 3000);
   };
 
   const editIt = () => {

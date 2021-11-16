@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TimeStamp } from "../TimeStamp";
 import styles2 from "../css/info.module.scss";
+import { useTransition, animated } from "react-spring";
 
 const PercentageToday = ({ resetToMain }) => {
   const [percToday, setPercToday] = useState(0);
@@ -9,6 +10,12 @@ const PercentageToday = ({ resetToMain }) => {
   const storage = { ...localStorage };
 
   const retrivedDates = Object.keys(storage);
+
+  const transitions = useTransition(percToday, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    delay: 300,
+  });
 
   useEffect(() => {
     retrivedDates.forEach((e) => {
@@ -35,7 +42,11 @@ const PercentageToday = ({ resetToMain }) => {
 
   setTimeout(() => {
     resetToMain();
-  }, [2500]);
+  }, [5000]);
+
+  const reset = () => {
+    resetToMain();
+  };
 
   const percFix = (perc) => {
     let perc2 = perc.toFixed(2);
@@ -49,11 +60,14 @@ const PercentageToday = ({ resetToMain }) => {
     }
   };
 
-  return (
-    <div className={styles2.percToday}>
+  return transitions((style, item) => (
+    <animated.div onClick={reset} className={styles2.percToday} style={style}>
       <div>{percFix(percToday)}</div>
-    </div>
-  );
+    </animated.div>
+  ));
+  // <div onClick={reset} className={styles2.percToday}>
+  //   <div>{percFix(percToday)}</div>
+  // </div>
 };
 
 export default PercentageToday;
