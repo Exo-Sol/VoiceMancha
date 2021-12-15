@@ -65,6 +65,7 @@ const MonthlyDisplay = ({ resetToMain }) => {
         const percen = tot / num;
         const month = parseInt(e.split(".")[0]);
         const day = parseInt(e.split(".")[1]);
+        // change display from sum to percent
         if (sumPerc) {
           setDateManchObj((prev) => [...prev, [{ day, month }, tot]]);
         } else {

@@ -8,16 +8,18 @@ import { useState, useEffect } from "react";
 import { TimeStamp } from "./TimeStamp";
 
 import styles from "./css/main.module.scss";
+
 import blackMic from "./icons/mic-black.png";
 import whiteMic from "./icons/mic-white.png";
 import clear from "./icons/clear.png";
+import menu from "./icons/menu.png";
+import dial from "./icons/dial.png";
 
 import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
 
 const AppMain = ({ voiceCommands }) => {
-  console.log(voiceCommands);
   const pullData = () => {
     if (localStorage.getItem(todayDate)) {
       return JSON.parse(localStorage.getItem(todayDate));
@@ -37,6 +39,11 @@ const AppMain = ({ voiceCommands }) => {
   const [mainDisplay, setMainDisplay] = useState(() => 0);
 
   const transitions = useTransition(mainDisplay, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+  });
+
+  const transition2 = useTransition(listening, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
   });
@@ -81,6 +88,13 @@ const AppMain = ({ voiceCommands }) => {
     }
   };
 
+  const stopListening = () => {
+    SpeechRecognition.stopListening();
+  };
+
+  //////////////////////////////////////////////////////////////////
+  /////////////Listening for input or command //////////////////////
+
   useEffect(() => {
     const num = [
       "nula",
@@ -94,11 +108,11 @@ const AppMain = ({ voiceCommands }) => {
       "osam",
       "devet",
     ];
-    //////////////////////////
 
     voiceCommands(transcript);
-
-    /////////////////////////
+    console.log(
+      "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+    );
 
     if (!isNaN(parseInt(transcript))) {
       setMancha((prev) => [
@@ -122,6 +136,9 @@ const AppMain = ({ voiceCommands }) => {
     }
     return () => {};
   }, [listening]);
+
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
 
   // saving to local storage when ui changes
 
@@ -163,6 +180,8 @@ const AppMain = ({ voiceCommands }) => {
     setInitialRender(false);
   }, []);
 
+  //////////////////////////////////////////////////////////////////////////////////////
+
   return (
     <div className={listening ? styles.mainDivRec : styles.mainDiv}>
       <>
@@ -184,26 +203,45 @@ const AppMain = ({ voiceCommands }) => {
         </animated.div>
       ))}
 
-      <div className={styles.buttonsCont}>
-        <img
-          src={listening ? whiteMic : blackMic}
-          alt="Mic"
-          onClick={record}
-          className={styles.button}
-        ></img>
+      {transition2((style, item) => (
+        <animated.div className={styles.buttonsCont} style={style}>
+          <div className="inputButtons">
+            <img
+              src={listening ? whiteMic : blackMic}
+              alt="Mic"
+              onClick={record}
+              className={styles.button}
+            ></img>{" "}
+            {!listening && (
+              <img
+                src={dial}
+                alt="enterNum"
+                className={styles.button}
+                id={styles.dial}
+              />
+            )}
+          </div>
 
-        {listening ? (
-          <div className={styles.button}></div>
-        ) : (
-          <img
-            src={clear}
-            alt="clear"
-            onClick={editIt}
-            className={styles.button}
-            style={{ opacity: "0.8" }}
-          ></img>
-        )}
-      </div>
+          <div className="deleteAndMenu">
+            <img
+              src={clear}
+              alt="clear"
+              onClick={listening ? stopListening : editIt}
+              className={styles.button}
+              style={{ opacity: "0.8" }}
+            ></img>{" "}
+            {!listening && (
+              <img
+                src={menu}
+                onClick={() => voiceCommands("glasovne naredbe")}
+                alt="menu"
+                className={styles.button}
+                style={{ opacity: "0.8" }}
+              />
+            )}
+          </div>
+        </animated.div>
+      ))}
     </div>
   );
 };

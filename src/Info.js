@@ -3,6 +3,7 @@ import PercentageToday from "./infoComponents/PercentageToday";
 import MonthlyDisplay from "./infoComponents/MonthlyDisplay";
 import DayEntriesNum from "./infoComponents/DayEntriesNum";
 import ListOfCommands from "./infoComponents/ListOfCommands";
+import PercDayWeek from "./infoComponents/PercDayWeek";
 import About from "./infoComponents/About";
 // import styles from "./css/info.module.scss";
 
@@ -18,6 +19,7 @@ import About from "./infoComponents/About";
 //     "prosjek utorak",
 //     "prosjek srijeda",
 //     "prosjek četvrtak",
+//     "prosjek po danima"
 
 const Info = ({ command, resetToMain, redirect }) => {
   const [changeInfo, setChangeInfo] = useState(<></>);
@@ -44,6 +46,9 @@ const Info = ({ command, resetToMain, redirect }) => {
         );
       case "info":
         return setChangeInfo(<About resetToMain={resetToMain} />);
+
+      case "prosjek po danima":
+        return setChangeInfo(<PercDayWeek resetToMain={resetToMain} />);
       default:
         return setChangeInfo(<></>);
     }
