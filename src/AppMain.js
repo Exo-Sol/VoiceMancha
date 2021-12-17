@@ -19,6 +19,8 @@ import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
 
+import DialInput from "./components/DialInput";
+
 const AppMain = ({ voiceCommands }) => {
   const pullData = () => {
     if (localStorage.getItem(todayDate)) {
@@ -37,6 +39,7 @@ const AppMain = ({ voiceCommands }) => {
   const [idToDelete, seIdToDelete] = useState(null);
   const [initialRender, setInitialRender] = useState(() => true);
   const [mainDisplay, setMainDisplay] = useState(() => 0);
+  const [dialInput, setDialInput] = useState(false);
 
   const transitions = useTransition(mainDisplay, {
     from: { opacity: 0 },
@@ -49,6 +52,7 @@ const AppMain = ({ voiceCommands }) => {
   });
 
   const record = () => {
+    setDialInput(false);
     SpeechRecognition.startListening({ language: "hr_HR" });
   };
 
@@ -90,6 +94,23 @@ const AppMain = ({ voiceCommands }) => {
 
   const stopListening = () => {
     SpeechRecognition.stopListening();
+  };
+
+  const dialFunc = () => {
+    setDialInput(!dialInput);
+  };
+
+  const saveDialInput = (num) => {
+    if (!isNaN(parseInt(num))) {
+      setMancha((prev) => [
+        ...prev,
+        {
+          manch: parseInt(num),
+          timeObj: TimeStamp(),
+          id: new Date().getTime(),
+        },
+      ]);
+    }
   };
 
   //////////////////////////////////////////////////////////////////
@@ -189,7 +210,11 @@ const AppMain = ({ voiceCommands }) => {
           <p className={styles.micIndi}>
             Microphone: {listening ? "on" : "off"}
           </p>
-          <p id={styles.transcript}>{transcript ? transcript : "$  $"}</p>
+          {dialInput ? (
+            <DialInput saveDialInput={saveDialInput} />
+          ) : (
+            <p id={styles.transcript}>{transcript ? transcript : "$  $"}</p>
+          )}
         </div>
       </>
 
@@ -216,6 +241,7 @@ const AppMain = ({ voiceCommands }) => {
               <img
                 src={dial}
                 alt="enterNum"
+                onClick={dialFunc}
                 className={styles.button}
                 id={styles.dial}
               />
