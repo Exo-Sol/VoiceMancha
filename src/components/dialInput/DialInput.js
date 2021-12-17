@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../css/main.module.scss";
+import styles from "../../css/main.module.scss";
 
 const DialInput = ({ saveDialInput }) => {
   const [amount, setAmount] = useState(0);

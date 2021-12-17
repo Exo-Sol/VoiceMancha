@@ -19,7 +19,8 @@ import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
 
-import DialInput from "./components/DialInput";
+import DialInput from "./components/dialInput/DialInput";
+import ModeMancha from "./components/dialInput/ModeMancha";
 
 const AppMain = ({ voiceCommands }) => {
   const pullData = () => {
@@ -207,9 +208,14 @@ const AppMain = ({ voiceCommands }) => {
     <div className={listening ? styles.mainDivRec : styles.mainDiv}>
       <>
         <div className={styles.micAndTranscript}>
-          <p className={styles.micIndi}>
-            Microphone: {listening ? "on" : "off"}
-          </p>
+          {dialInput ? (
+            <ModeMancha />
+          ) : (
+            <p className={styles.micIndi}>
+              Microphone: {listening ? "on" : "off"}
+            </p>
+          )}
+
           {dialInput ? (
             <DialInput saveDialInput={saveDialInput} />
           ) : (
