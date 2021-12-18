@@ -18,8 +18,10 @@ allmanch.forEach(function (e) {
   }
 });
 
-let manchaMods = Object.keys(freqObj);
+let manchaMods1 = Object.keys(freqObj);
 
-manchaMods.sort((a, b) => freqObj[b] - freqObj[a]);
+manchaMods1.sort((a, b) => freqObj[b] - freqObj[a]);
+
+let manchaMods = manchaMods1.slice(0, 6);
 
 export default manchaMods;

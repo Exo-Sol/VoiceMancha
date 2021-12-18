@@ -2,12 +2,23 @@ import React from "react";
 import manchaMods from "../../data/getModeManch";
 import styles from "../../css/main.module.scss";
 
-const ModeMancha = () => {
+const ModeMancha = ({ saveDialInput }) => {
   console.log(manchaMods);
+
+  const clickedMod = (e) => {
+    console.log(e);
+    saveDialInput(e);
+  };
+
   return (
-    <div className={styles.micAndTranscript}>
+    <div>
       {manchaMods.map((ele) => (
-        <button>{ele}</button>
+        <button
+          className={styles.manchaModButtons}
+          onClick={() => clickedMod(ele)}
+        >
+          {ele}
+        </button>
       ))}
     </div>
   );

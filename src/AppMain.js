@@ -4,7 +4,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { useTransition, animated } from "react-spring";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { TimeStamp } from "./TimeStamp";
 
 import styles from "./css/main.module.scss";
@@ -20,7 +20,9 @@ import Total from "./components/Total";
 import List from "./components/List";
 
 import DialInput from "./components/dialInput/DialInput";
-import ModeMancha from "./components/dialInput/ModeMancha";
+const ModeMancha = React.lazy(() =>
+  import("./components/dialInput/ModeMancha")
+);
 
 const AppMain = ({ voiceCommands }) => {
   const pullData = () => {
@@ -206,10 +208,12 @@ const AppMain = ({ voiceCommands }) => {
 
   return (
     <div className={listening ? styles.mainDivRec : styles.mainDiv}>
-      <>
+      <div className={dialInput && styles.switchDiv}>
         <div className={styles.micAndTranscript}>
           {dialInput ? (
-            <ModeMancha />
+            <Suspense fallback={<div>Loading...</div>}>
+              <ModeMancha saveDialInput={saveDialInput} />
+            </Suspense>
           ) : (
             <p className={styles.micIndi}>
               Microphone: {listening ? "on" : "off"}
@@ -222,11 +226,11 @@ const AppMain = ({ voiceCommands }) => {
             <p id={styles.transcript}>{transcript ? transcript : "$  $"}</p>
           )}
         </div>
-      </>
+      </div>
 
       {transitions((style, item) => (
         <animated.div
-          className={styles.manchaList}
+          className={dialInput ? styles.switchManchaList : styles.manchaList}
           onClick={changeMainDisply}
           style={style}
         >
