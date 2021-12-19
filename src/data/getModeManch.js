@@ -18,10 +18,27 @@ allmanch.forEach(function (e) {
   }
 });
 
+const numAll = allmanch.length;
+console.log(numAll);
+console.log(freqObj);
+
 let manchaMods1 = Object.keys(freqObj);
+let manchaValues1 = Object.values(freqObj);
 
 manchaMods1.sort((a, b) => freqObj[b] - freqObj[a]);
+manchaValues1.sort((a, b) => b - a);
 
-let manchaMods = manchaMods1.slice(0, 6);
+console.log(manchaMods1);
+console.log(manchaValues1);
 
-export default manchaMods;
+const manchaMods = manchaMods1.slice(0, 6);
+const manchaValues = manchaValues1.slice(0, 6);
+
+const manchaPerc1 = manchaValues.map((e) => (e / numAll).toFixed(2) * 100);
+const manchaPerc = manchaPerc1.map(
+  (e) => Math.round((e + Number.EPSILON) * 100) / 100
+);
+
+console.log(manchaPerc);
+
+export { manchaMods, manchaPerc };

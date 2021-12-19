@@ -66,7 +66,7 @@
   color: #001427;
   display: grid;
   grid-template-rows: repeat(7, 1fr);
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
   align-content: center;
   height: 100vh;
@@ -118,6 +118,7 @@
   align-items: center;
   justify-items: center;
   width: 100%;
+  margin-top: 5vh;
   margin-bottom: 50px;
 }
 
@@ -213,21 +214,27 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  margin-top: 5vh;
+  margin-top: 4vh;
   opacity: 0.8;
   font-size: 1.1em;
   text-align: center;
 
   .inputField {
     text-align: center;
-    width: 30vw;
+    width: 35vw;
     padding-top: 2px;
     padding-bottom: 2px;
+    height: 4vh;
+    margin-bottom: 5px;
+
+    border: none;
+    background-color: aliceblue;
+    border-radius: 5px;
   }
 
   .saveDel {
     display: flex;
-    gap: 10px;
+    gap: 15px;
   }
 
   .saveDelButtons {
@@ -238,7 +245,7 @@ ul {
 
 .switchDiv {
   grid-row: 4/7;
-  padding-top: 5vh;
+  margin-top: 10vh;
   @include animation1;
 }
 
@@ -247,10 +254,10 @@ ul {
 
   justify-content: center;
 
-  max-height: 100%;
-  padding-top: 5vh;
+  height: 100%;
+  padding-top: 7vh;
 
-  align-items: center;
+  align-items: flex-end;
   overflow: scroll;
   grid-row: 1/4;
   @include animation1;
@@ -258,8 +265,38 @@ ul {
 
 .manchaModButtons {
   padding: 7px;
-  margin-left: 10px;
+  margin-left: 7px;
   margin-right: 10px;
   border-radius: 5px;
   border: none;
+}
+
+.modPercDiv {
+  display: inline-flex;
+  flex-direction: row;
+
+  .percMod {
+    font-size: 0.7em;
+    color: #c94f4b;
+    padding-top: 12px;
+    position: fixed;
+  }
+}
+
+#percentageButton {
+  position: absolute;
+  margin-top: 7px;
+  background-color: rgb(30, 56, 119);
+  border-radius: 50%;
+  padding: 7px;
+  opacity: 0.5;
+}
+
+#percentageButton1 {
+  position: absolute;
+  margin-top: 7px;
+  background-color: rgb(30, 56, 119);
+  border-radius: 50%;
+  padding: 7px;
+  opacity: 1;
 }

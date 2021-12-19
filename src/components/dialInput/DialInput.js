@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../../css/main.module.scss";
 
 const DialInput = ({ saveDialInput }) => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
 
   const amountChange = (e) => {
     setAmount(e.target.value);
@@ -13,8 +13,8 @@ const DialInput = ({ saveDialInput }) => {
     if (amount === "" || amount === undefined) {
       alert("netocan unos");
     } else {
-      saveDialInput(amount);
-      setAmount(0);
+      saveDialInput(parseInt(amount));
+      setAmount("");
     }
   };
 
