@@ -15,9 +15,6 @@ const ModeMancha = ({ saveDialInput }) => {
   const showPerc = () => {
     setShow(!show);
   };
-  const hidePerc = () => {
-    setShow(!show);
-  };
 
   return (
     <div>
@@ -28,17 +25,9 @@ const ModeMancha = ({ saveDialInput }) => {
             onClick={() => clickedMod(ele)}
           >
             {ele}
-            {show && (
-              <div className={styles.percMod}>{`${manchaPerc[ind]}%`}</div>
-            )}
           </button>
         </div>
       ))}
-      <button
-        className={styles.manchaModButtons}
-        id={show ? styles.percentageButton1 : styles.percentageButton}
-        onClick={showPerc}
-      ></button>
     </div>
   );
 };

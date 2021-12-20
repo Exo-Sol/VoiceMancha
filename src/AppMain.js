@@ -208,7 +208,7 @@ const AppMain = ({ voiceCommands }) => {
 
   return (
     <div className={listening ? styles.mainDivRec : styles.mainDiv}>
-      <div className={dialInput && styles.switchDiv}>
+      <div className={dialInput ? styles.switchDiv : undefined}>
         <div className={styles.micAndTranscript}>
           {dialInput ? (
             <Suspense fallback={<div>Loading...</div>}>

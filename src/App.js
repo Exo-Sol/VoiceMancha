@@ -13,6 +13,7 @@ function App() {
     "broj dostava",
     "glasovne naredbe",
     "prosjek po danima",
+    "globalna statistika",
     // "prosjek petak",
     // "prosjek subota",
     // "prosjek nedilja",

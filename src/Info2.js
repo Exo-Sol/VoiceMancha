@@ -5,6 +5,7 @@ import DayEntriesNum from "./infoComponents/DayEntriesNum";
 import ListOfCommands from "./infoComponents/ListOfCommands";
 import About from "./infoComponents/About";
 import PercDayWeek from "./infoComponents/PercDayWeek";
+import GlobalStats from "./infoComponents/GlobalStats";
 // import styles from "./css/info.module.scss";
 
 // "mjesečni prikaz",
@@ -47,6 +48,8 @@ const Info2 = ({ command, resetToMain, redirect }) => {
         return setChangeInfo(<About resetToMain={resetToMain} />);
       case "prosjek po danima":
         return setChangeInfo(<PercDayWeek resetToMain={resetToMain} />);
+      case "globalna statistika":
+        return setChangeInfo(<GlobalStats resetToMain={resetToMain} />);
       default:
         return setChangeInfo(<></>);
     }

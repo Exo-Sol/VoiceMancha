@@ -3,7 +3,13 @@ import styles2 from "../css/info.module.scss";
 import { useTransition, animated } from "react-spring";
 
 const ListOfCommands = ({ redirect }) => {
-  const list = ["mjesečni prikaz", "prosjek danas", "info", "broj dostava"];
+  const list = [
+    "mjesečni prikaz",
+    "prosjek danas",
+    "info",
+    "broj dostava",
+    "globalna statistika",
+  ];
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
