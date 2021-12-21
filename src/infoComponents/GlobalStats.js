@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles2 from "../css/info.module.scss";
+import GlobalStatsList from "./GlobalStatsList";
+// add animation later
+import { useTransition, animated } from "react-spring";
 
 import {
   manchaMods,
@@ -11,29 +14,39 @@ import {
 } from "../data/getModeManch";
 
 const GlobalStats = ({ resetToMain }) => {
+  const [display, setDisplay] = useState("Total");
+
   const reset = () => {
     resetToMain();
   };
+
   console.log(mothObj);
 
   const percAllManch1 = parseFloat((totalManch / numAll).toFixed(2));
   const percAllManch = Math.round((percAllManch1 + Number.EPSILON) * 100) / 100;
 
   return (
-    <div onClick={reset}>
-      <h3>{`Ukupan broj dostava : ${numAll}`}</h3>
-      <h3>{`Ukupno manche : ${totalManch}`}</h3>
-      <h3>{`Ukupni prosijek  : ${percAllManch}`}</h3>
-      <div>
-        {manchaMods.map((ele, ind) => (
-          <ul>
-            <li>
-              <p>{`${ele} - ${manchaPerc[ind]}% `}</p>
-              <p>{`Ukupno dobivenih - ${manchaValues[ind]}`}</p>
-            </li>
-          </ul>
-        ))}
+    <div className={styles2.globalDiv}>
+      <h2 className={styles2.globalTitle}>Total</h2>
+
+      <h4 id={styles2.allManch}>
+        {`Mancha : `}
+        {`${totalManch}`}
+      </h4>
+      <h4 id={styles2.allDilivered}>{`broj dostava : ${numAll}`}</h4>
+      <h4 id={styles2.allPerc}>{`prosijek  : ${percAllManch}`}</h4>
+      <div className={styles2.globaUlWrapper}>
+        <GlobalStatsList list={manchaMods} type="mods" />
+        <GlobalStatsList list={manchaPerc} type="perc" />
+        <GlobalStatsList list={manchaValues} type="values" />
       </div>
+      <button
+        className={styles2.backButt}
+        id={styles2.backButton}
+        onClick={reset}
+      >
+        back
+      </button>
     </div>
   );
 };
