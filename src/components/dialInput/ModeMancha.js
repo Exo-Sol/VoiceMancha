@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { manchaMods, manchaPerc } from "../../data/getModeManch";
+import getModeManch from "../../data/getModeManch";
 import styles from "../../css/main.module.scss";
 
 const ModeMancha = ({ saveDialInput }) => {
-  console.log(manchaMods);
+  const { manchaMods } = getModeManch();
 
   const [show, setShow] = useState(false);
 
@@ -19,7 +19,7 @@ const ModeMancha = ({ saveDialInput }) => {
   return (
     <div>
       {manchaMods.map((ele, ind) => (
-        <div className={styles.modPercDiv}>
+        <div className={styles.modPercDiv} key={ind}>
           <button
             className={styles.manchaModButtons}
             onClick={() => clickedMod(ele)}

@@ -8,7 +8,7 @@ const GlobalStatsList = ({ list, type }) => {
   return (
     <div className={styles2.listDiv}>
       {list.map((ele, ind) => (
-        <ul className={styles2.globalUl}>
+        <ul className={styles2.globalUl} key={ind}>
           <li className={styles2[type]}>
             {type === "values" ? `(${ele})` : `${ele}`}
             {type === "perc" ? "%" : ""}

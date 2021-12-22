@@ -36,7 +36,8 @@ const MonthlyDisplay = ({ resetToMain }) => {
   const storage = { ...localStorage };
   const retrivedDatesUnsorted = Object.keys(storage);
   console.log(retrivedDatesUnsorted);
-
+  
+  // sort by days of month , all moths, so when we seperate specific moth all days are in order
   const retrivedDates = retrivedDatesUnsorted.sort(
     (a, b) => a.split(".")[1] - b.split(".")[1]
   );
