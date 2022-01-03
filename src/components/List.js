@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "../css/main.module.scss";
 
 const List = ({ mancha, edit, deleteEntry }) => {
   const styleP = { display: "inline" };
 
+  const manchaEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    manchaEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (!edit) {
+      scrollToBottom();
+    }
+  }, [mancha]);
+
   const calcTotal = () => {
     const manche = mancha.map((e) => {
       return parseInt(e.manch);
     });
-    if (manche[0]) {
+    if (manche[0] || manche[0] === 0) {
       const reducer = (prev, cur) => prev + cur;
       const tot = manche.reduce(reducer);
       return tot;
-    } else return 0;
+    } else {
+      return 0;
+    }
   };
 
   const zeroNum = (num) => {
@@ -25,7 +39,7 @@ const List = ({ mancha, edit, deleteEntry }) => {
     <ul>
       {mancha.map((e, i) => (
         <li key={e.id}>
-          <div>
+          <div classname={styles.liGrid}>
             <p className={styles.listP} style={styleP} id={styles.num}>{`${
               i + 1
             }.`}</p>
@@ -36,15 +50,18 @@ const List = ({ mancha, edit, deleteEntry }) => {
           </div>
 
           {edit && (
-            <button
-              className={styles.delButton}
-              onClick={(eve) => {
-                deleteEntry(e.id);
-                eve.stopPropagation();
-              }}
-            >
-              x
-            </button>
+            <>
+              <br />
+              <button
+                className={styles.delButton}
+                onClick={(eve) => {
+                  deleteEntry(e.id);
+                  eve.stopPropagation();
+                }}
+              >
+                x
+              </button>
+            </>
           )}
         </li>
       ))}
@@ -56,6 +73,7 @@ const List = ({ mancha, edit, deleteEntry }) => {
           paddingLeft: "10px",
         }}
       >{`Total : ${calcTotal()}`}</p>
+      <div ref={manchaEndRef} />
     </ul>
   );
 };

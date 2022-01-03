@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../css/main.module.scss";
 
-const DialInput = ({ saveDialInput }) => {
+const DialInput = ({ saveDialInput, changeUi }) => {
   const [amount, setAmount] = useState("");
 
   const amountChange = (e) => {
@@ -20,6 +20,10 @@ const DialInput = ({ saveDialInput }) => {
 
   const clickDelete = () => setAmount(0);
 
+  const focused = (is) => {
+    changeUi(is);
+  };
+
   return (
     <div className={styles.dialInput}>
       <input
@@ -33,6 +37,8 @@ const DialInput = ({ saveDialInput }) => {
         onChange={amountChange}
         style={{ display: "block" }}
         autoFocus={true}
+        onFocus={() => focused(true)}
+        onBlur={() => focused(false)}
         onKeyDown={(evt) =>
           ["e", "E", "+", "-", "."].includes(evt.key) && evt.preventDefault()
         }

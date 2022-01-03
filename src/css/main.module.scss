@@ -69,6 +69,7 @@
   gap: 10px;
   justify-content: center;
   align-content: center;
+  justify-items: center;
   height: 100vh;
   width: 100vw;
 }
@@ -82,6 +83,7 @@
   gap: 20px;
   justify-content: center;
   align-content: center;
+  justify-items: center;
   height: 100vh;
   width: 100vw;
 
@@ -113,13 +115,23 @@
 }
 
 .buttonsCont {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  width: 32vw;
+  margin-top: 5vh;
+  margin-bottom: 25px;
+}
+.buttonsKeyboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
   width: 100%;
   margin-top: 5vh;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .button {
@@ -132,25 +144,30 @@
 li {
   list-style-type: none;
   padding: 2.5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
+
 .manchaList {
   display: flex;
 
   justify-content: center;
   margin: 20px;
-  max-height: 100%;
-  margin-top: 70px;
+
+  margin-top: 50px;
 
   align-items: center;
   overflow: scroll;
   grid-row: 2/7;
 }
 .delButton {
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  width: 45%;
+
+  padding-top: 3px;
+  padding-bottom: 3px;
   border-radius: 5px;
+  margin-bottom: 4px;
   border: none;
 }
 
@@ -168,10 +185,12 @@ ul {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
-  height: 100%;
-  padding: 10px;
+
+  padding: 20px;
   text-align: left;
   width: 70vw;
+  max-height: 100%;
+  margin-left: 15px;
 }
 
 .listP {
@@ -254,13 +273,15 @@ ul {
 
   justify-content: center;
 
-  height: 100%;
-  padding-top: 7vh;
+  margin-top: 7vh;
 
-  align-items: flex-end;
-  overflow: scroll;
+  overflow: visible;
   grid-row: 1/4;
   @include animation1;
+}
+
+#swichOwerflow {
+  overflow: scroll;
 }
 
 .manchaModButtons {

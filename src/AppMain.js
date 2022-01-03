@@ -43,6 +43,7 @@ const AppMain = ({ voiceCommands }) => {
   const [initialRender, setInitialRender] = useState(() => true);
   const [mainDisplay, setMainDisplay] = useState(() => 0);
   const [dialInput, setDialInput] = useState(false);
+  const [androidKeyboard, setAndroidKeyboard] = useState(false);
 
   const transitions = useTransition(mainDisplay, {
     from: { opacity: 0 },
@@ -116,6 +117,29 @@ const AppMain = ({ voiceCommands }) => {
     }
   };
 
+  const multipleInputsVoice = (inputs) => {
+    const stringArr = inputs.split("+");
+    let valueArr = stringArr.map((x) => {
+      if (!isNaN(parseInt(x))) {
+        return parseInt(x);
+      }
+    });
+
+    valueArr = valueArr.filter((x) => x !== undefined);
+
+    console.log(valueArr);
+    valueArr.forEach((ele, ind) => {
+      setMancha((prev) => [
+        ...prev,
+        {
+          manch: parseInt(ele),
+          timeObj: TimeStamp(),
+          id: new Date().getTime() - ind * 1000000000000,
+        },
+      ]);
+    });
+  };
+
   //////////////////////////////////////////////////////////////////
   /////////////Listening for input or command //////////////////////
 
@@ -139,14 +163,16 @@ const AppMain = ({ voiceCommands }) => {
     );
 
     if (!isNaN(parseInt(transcript))) {
-      setMancha((prev) => [
-        ...prev,
-        {
-          manch: parseInt(transcript),
-          timeObj: TimeStamp(),
-          id: new Date().getTime(),
-        },
-      ]);
+      multipleInputsVoice(transcript);
+      console.log("jesmo li tu");
+      // setMancha((prev) => [
+      //   ...prev,
+      //   {
+      //     manch: parseInt(transcript),
+      //     timeObj: TimeStamp(),
+      //     id: new Date().getTime(),
+      //   },
+      // ]);
     } else if (num.includes(transcript)) {
       let x = num.indexOf(transcript);
       setMancha((prev) => [
@@ -204,7 +230,18 @@ const AppMain = ({ voiceCommands }) => {
     setInitialRender(false);
   }, []);
 
-  //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////for detecticn focus in input , for changes to wievport when android keyboard pops up
+  /////////////////////////////////////////////////////////////
+
+  const changeUi = (focused) => {
+    if (focused) {
+      setAndroidKeyboard(true);
+    } else {
+      setAndroidKeyboard(false);
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className={listening ? styles.mainDivRec : styles.mainDiv}>
@@ -221,7 +258,7 @@ const AppMain = ({ voiceCommands }) => {
           )}
 
           {dialInput ? (
-            <DialInput saveDialInput={saveDialInput} />
+            <DialInput saveDialInput={saveDialInput} changeUi={changeUi} />
           ) : (
             <p id={styles.transcript}>{transcript ? transcript : "$  $"}</p>
           )}
@@ -231,6 +268,7 @@ const AppMain = ({ voiceCommands }) => {
       {transitions((style, item) => (
         <animated.div
           className={dialInput ? styles.switchManchaList : styles.manchaList}
+          id={mainDisplay === 2 && styles.swichOwerflow}
           onClick={changeMainDisply}
           style={style}
         >
@@ -239,43 +277,43 @@ const AppMain = ({ voiceCommands }) => {
       ))}
 
       {transition2((style, item) => (
-        <animated.div className={styles.buttonsCont} style={style}>
-          <div className="inputButtons">
+        <animated.div
+          className={
+            androidKeyboard ? styles.buttonsKeyboard : styles.buttonsCont
+          }
+          style={style}
+        >
+          <img
+            src={listening ? whiteMic : blackMic}
+            alt="Mic"
+            onClick={record}
+            className={styles.button}
+          ></img>{" "}
+          {!listening && (
             <img
-              src={listening ? whiteMic : blackMic}
-              alt="Mic"
-              onClick={record}
+              src={dial}
+              alt="enterNum"
+              onClick={dialFunc}
               className={styles.button}
-            ></img>{" "}
-            {!listening && (
-              <img
-                src={dial}
-                alt="enterNum"
-                onClick={dialFunc}
-                className={styles.button}
-                id={styles.dial}
-              />
-            )}
-          </div>
-
-          <div className="deleteAndMenu">
+              id={styles.dial}
+            />
+          )}
+          <img
+            src={clear}
+            alt="clear"
+            onClick={listening ? stopListening : editIt}
+            className={styles.button}
+            style={{ opacity: "0.8" }}
+          ></img>{" "}
+          {!listening && (
             <img
-              src={clear}
-              alt="clear"
-              onClick={listening ? stopListening : editIt}
+              src={menu}
+              onClick={() => voiceCommands("glasovne naredbe")}
+              alt="menu"
               className={styles.button}
               style={{ opacity: "0.8" }}
-            ></img>{" "}
-            {!listening && (
-              <img
-                src={menu}
-                onClick={() => voiceCommands("glasovne naredbe")}
-                alt="menu"
-                className={styles.button}
-                style={{ opacity: "0.8" }}
-              />
-            )}
-          </div>
+            />
+          )}
         </animated.div>
       ))}
     </div>
