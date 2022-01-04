@@ -33,7 +33,7 @@ const About = ({ resetToMain }) => {
 
       <div className={styles2.info}>
         <h4>"Mancha" </h4>
-        <h4> app Version Beta 1.0.0</h4>
+        <h4> app Version : pre release Beta 2.1.5</h4>
         <h4>by Exo</h4>
       </div>
     </animated.div>
@@ -45,7 +45,7 @@ const About = ({ resetToMain }) => {
 
   //   <div className={styles2.info}>
   //     <h4>"Mancha" </h4>
-  //     <h4> app Version Beta 1.0.0</h4>
+  //     <h4> app Version PreRelease 1.0.0</h4>
   //     <h4>by Exo</h4>
   //   </div>
   // </div>
