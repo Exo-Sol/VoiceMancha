@@ -4,6 +4,7 @@ import GlobalStatsList from "./GlobalStatsList";
 // add animation later
 import { useTransition, animated } from "react-spring";
 import { useSwipeable, config } from "react-swipeable";
+import swipe from "../icons/swipe.png";
 
 import getModeManch from "../data/getModeManch";
 
@@ -32,6 +33,10 @@ const GlobalStats = ({ resetToMain }) => {
   }
 
   console.log(relevantMonths);
+
+  const [singleEntry, setSingleEntry] = useState(() =>
+    relevantMonths.length > 1 ? false : true
+  );
 
   ///////////////////////////////////////////swipe///////////
   ///////////////////////////////////////////////////////////
@@ -108,6 +113,11 @@ const GlobalStats = ({ resetToMain }) => {
       >
         back
       </button>
+      {singleEntry ? (
+        <div id={styles2.fakeDiv}></div>
+      ) : (
+        <img id={styles2.swipeIcon} src={swipe} alt="swipe" />
+      )}
     </animated.div>
   ));
 };

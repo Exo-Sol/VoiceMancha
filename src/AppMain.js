@@ -295,7 +295,7 @@ const AppMain = ({ voiceCommands }) => {
               alt="enterNum"
               onClick={dialFunc}
               className={styles.button}
-              id={styles.dial}
+              id={dialInput ? styles.dialActive : styles.dial}
             />
           )}
           <img
