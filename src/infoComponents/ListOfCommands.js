@@ -27,11 +27,15 @@ const ListOfCommands = ({ redirect }) => {
 
   return transitions((style, item) => (
     <animated.div id={styles2.ulDiv} style={style}>
-      <ul id={styles2.trueUl}>
+      <ul className={styles2.commandsUl} id={styles2.trueUl}>
         {list.map((ele, ind) => {
           return (
             // it needs to acess component of that command
-            <li onClick={() => redirect(ele)} key={ind}>
+            <li
+              className={styles2.trueLi}
+              onClick={() => redirect(ele)}
+              key={ind}
+            >
               {ele}
             </li>
           );

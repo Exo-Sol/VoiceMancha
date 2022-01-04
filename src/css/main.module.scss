@@ -141,7 +141,7 @@
   border-radius: 50%;
 }
 
-li {
+.mainManchLi {
   list-style-type: none;
   padding: 2.5px;
   display: grid;
@@ -180,7 +180,7 @@ li {
   opacity: 0.9;
 }
 
-ul {
+.mainManchUl {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;

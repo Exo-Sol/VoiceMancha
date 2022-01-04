@@ -47,14 +47,14 @@ const DialInput = ({ saveDialInput, changeUi }) => {
       <div className={styles.saveDel}>
         <input
           type="submit"
-          onClick={onSubmit}
+          onMouseDown={onSubmit}
           value="Save"
           className={styles.saveDelButtons}
         />
 
         <button
           id="delete"
-          onClick={clickDelete}
+          onMouseDown={clickDelete}
           className={styles.saveDelButtons}
         >
           Del

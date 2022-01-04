@@ -36,10 +36,10 @@ const List = ({ mancha, edit, deleteEntry }) => {
   };
 
   return (
-    <ul>
+    <ul className={styles.mainManchUl}>
       {mancha.map((e, i) => (
-        <li key={e.id}>
-          <div classname={styles.liGrid}>
+        <li className={styles.mainManchLi} key={e.id}>
+          <div className={styles.liGrid}>
             <p className={styles.listP} style={styleP} id={styles.num}>{`${
               i + 1
             }.`}</p>

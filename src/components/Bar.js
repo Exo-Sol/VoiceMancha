@@ -29,6 +29,7 @@ const BarChart = ({ mancha }) => {
           "rgba(255, 159, 64, 1)",
         ],
         borderWidth: 1,
+        maxBarThickness: 100,
       },
     ],
   };

@@ -7,9 +7,40 @@
 
   font-style: normal;
 }
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: rotate(29deg);
+  } /* The following five values can be played with to make the waving more or less extreme */
+  20% {
+    transform: rotate(-23deg);
+  }
+  30% {
+    transform: rotate(29deg);
+  }
+  40% {
+    transform: rotate(-19deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+  60% {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  } /* Reset for the last half to pause */
+  100% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -53,8 +84,14 @@
 
 #swipeIcon {
   height: 50px;
-  margin-top: 25px;
+  margin-top: 10px;
   opacity: 0.15;
+  animation-fill-mode: forwards;
+  animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+  display: inline-block;
 }
 
 .swipeArrows1 {
@@ -88,10 +125,12 @@
   border-radius: 7%;
   opacity: 0.7;
   border: none;
+  margin-bottom: 20px;
+  margin-top: -7vh;
 }
 
 #percButton {
-  margin-top: -45px;
+  margin-top: -60px;
 }
 
 #ulDiv {
@@ -106,6 +145,16 @@
 #trueUl {
   display: grid;
   grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  width: 100vw;
+}
+
+.trueLi {
+  text-align: center;
+  display: flex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -164,7 +213,7 @@
   justify-items: center;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   padding-top: 10vh;
 
   .globalTitle {
@@ -187,7 +236,8 @@
       justify-content: center;
       align-content: center;
       font-size: 0.8em;
-      width: 10vw;
+      width: 15vw;
+      padding: 8px;
     }
   }
 }
@@ -206,19 +256,31 @@
 }
 
 .perc {
+  display: flex;
   color: #c94f4b;
 }
 
 .values {
+  display: flex;
   color: rgb(30, 56, 119);
 }
 
 .mods {
+  display: flex;
+
   font-style: italic;
 }
 
 #backButton {
-  margin-top: 7vh;
+  margin-top: 10vh;
 
   border: none;
+}
+
+.commandsUl {
+  text-align: center;
+}
+
+#fakeDiv {
+  height: 7vh;
 }

@@ -3,7 +3,7 @@ import { TimeStamp } from "../TimeStamp";
 import { useSwipeable, config } from "react-swipeable";
 import { Bar } from "react-chartjs-2";
 import styles2 from "../css/info.module.scss";
-
+import getModeManch from "../data/getModeManch"; ///////////
 import swipe from "../icons/swipe.png";
 
 //"mjesečni prikaz"
@@ -12,31 +12,59 @@ const MonthlyDisplay = ({ resetToMain }) => {
   const [selectedMonth, setSelectedMonth] = useState(() => TimeStamp().month);
   const [sumPerc, setSumPerc] = useState(true);
 
+  const { mothObj } = getModeManch();
+
+  let relevantMonths = [];
+
+  for (const [key, value] of Object.entries(mothObj)) {
+    if (value.length !== 0) {
+      relevantMonths.push(parseInt(key));
+    }
+  }
+
+  const [singleEntry, setSingleEntry] = useState(() =>
+    relevantMonths.length > 1 ? false : true
+  );
+
   const handlers = useSwipeable({
-    onSwipedLeft: (eventData) =>
-      setSelectedMonth(() => monthFwd(selectedMonth, eventData)),
+    onSwipedLeft: (eventData) => displayFwd(selectedMonth),
     ...config,
-    onSwipedRight: (eventData) =>
-      setSelectedMonth(() => monthBack(selectedMonth, eventData)),
+    onSwipedRight: (eventData) => displayBack(selectedMonth),
     ...config,
   });
 
-  const monthFwd = (month, eventData) => {
-    if (month === 12) {
-      return 1;
-    } else return month + 1;
+  const displayFwd = (month) => {
+    console.log(month);
+    if (month === relevantMonths[relevantMonths.length - 1]) {
+      setSelectedMonth(() => relevantMonths[0]);
+    } else {
+      relevantMonths.forEach((ele, ind) => {
+        if (month === ele) {
+          console.log("here");
+          setSelectedMonth(() => relevantMonths[ind + 1]);
+        }
+      });
+    }
   };
 
-  const monthBack = (month, eventData) => {
-    if (month === 1) {
-      return 12;
-    } else return month - 1;
+  const displayBack = (month) => {
+    console.log(month);
+    if (month === relevantMonths[0]) {
+      setSelectedMonth(() => relevantMonths[relevantMonths.length - 1]);
+    } else {
+      relevantMonths.forEach((ele, ind) => {
+        if (month === ele) {
+          console.log("here");
+          setSelectedMonth(() => relevantMonths[ind - 1]);
+        }
+      });
+    }
   };
 
   const storage = { ...localStorage };
   const retrivedDatesUnsorted = Object.keys(storage);
   console.log(retrivedDatesUnsorted);
-  
+
   // sort by days of month , all moths, so when we seperate specific moth all days are in order
   const retrivedDates = retrivedDatesUnsorted.sort(
     (a, b) => a.split(".")[1] - b.split(".")[1]
@@ -106,6 +134,7 @@ const MonthlyDisplay = ({ resetToMain }) => {
           "rgba(255, 159, 64, 1)",
         ],
         borderWidth: 1,
+        maxBarThickness: 100,
       },
     ],
   };
@@ -114,18 +143,21 @@ const MonthlyDisplay = ({ resetToMain }) => {
     <div className={styles2.main}>
       <h3 style={{ paddingTop: "30px" }}>Mjesečni prikaz</h3>
 
-      <Bar data={chartData} height={"200px"} />
+      <Bar data={chartData} height={"200px"} style={{ marginTop: "5vh" }} />
       <div>
         <h2 {...handlers}>
           <div id={styles2.block}>
-            <p className={styles2.swipeArrows1}>{`<`}</p>
-            <p className={styles2.swipeArrows2}>{`<`}</p>
+            <p className={styles2.swipeArrows1}>{singleEntry ? "" : "<"}</p>
+            <p className={styles2.swipeArrows2}>{singleEntry ? "" : "<"}</p>
             <p id={styles2.month}>{` \t ${selectedMonth}`}</p>
-            <p className={styles2.swipeArrows2}>{`>`}</p>
-            <p className={styles2.swipeArrows1}>{`>`}</p>
+            <p className={styles2.swipeArrows2}>{singleEntry ? "" : ">"}</p>
+            <p className={styles2.swipeArrows1}>{singleEntry ? "" : ">"}</p>
           </div>
-
-          <img id={styles2.swipeIcon} src={swipe} alt="swipe" />
+          {singleEntry ? (
+            <div id={styles2.fakeDiv}></div>
+          ) : (
+            <img id={styles2.swipeIcon} src={swipe} alt="swipe" />
+          )}
         </h2>
       </div>
       <button className={styles2.backButt} onClick={resetToMain}>

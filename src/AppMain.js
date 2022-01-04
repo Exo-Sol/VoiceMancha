@@ -268,7 +268,7 @@ const AppMain = ({ voiceCommands }) => {
       {transitions((style, item) => (
         <animated.div
           className={dialInput ? styles.switchManchaList : styles.manchaList}
-          id={mainDisplay === 2 && styles.swichOwerflow}
+          id={mainDisplay === 2 ? styles.swichOwerflow : undefined}
           onClick={changeMainDisply}
           style={style}
         >
