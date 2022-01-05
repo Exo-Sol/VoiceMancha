@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.emote {
+  display: flex;
+
+  justify-content: center;
+  margin: 10px;
+
+  margin-top: 50px;
+  width: 50vw;
+
+  align-items: center;
+  overflow: scroll;
+  grid-row: 2/7;
+}

@@ -18,6 +18,7 @@ import dial from "./icons/dial.png";
 import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
+import EmoteDispatch from "./components/emotes/EmoteDispatch";
 
 import DialInput from "./components/dialInput/DialInput";
 const ModeMancha = React.lazy(() =>
@@ -44,6 +45,7 @@ const AppMain = ({ voiceCommands }) => {
   const [mainDisplay, setMainDisplay] = useState(() => 0);
   const [dialInput, setDialInput] = useState(false);
   const [androidKeyboard, setAndroidKeyboard] = useState(false);
+  const [showEmote, setShowEmote] = useState(false);
 
   const transitions = useTransition(mainDisplay, {
     from: { opacity: 0 },
@@ -240,6 +242,10 @@ const AppMain = ({ voiceCommands }) => {
       setAndroidKeyboard(false);
     }
   };
+  ////////////////////////////////////////////////////////////////////////////////////////
+  const emoCue = (yesNo) => {
+    setShowEmote(yesNo);
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -264,7 +270,22 @@ const AppMain = ({ voiceCommands }) => {
           )}
         </div>
       </div>
+      {showEmote
+        ? false
+        : transitions((style, item) => (
+            <animated.div
+              className={
+                dialInput ? styles.switchManchaList : styles.manchaList
+              }
+              id={mainDisplay === 2 ? styles.swichOwerflow : undefined}
+              onClick={changeMainDisply}
+              style={style}
+            >
+              {renderSwitch(mainDisplay)}
+            </animated.div>
+          ))}
 
+      {/* 
       {transitions((style, item) => (
         <animated.div
           className={dialInput ? styles.switchManchaList : styles.manchaList}
@@ -274,7 +295,8 @@ const AppMain = ({ voiceCommands }) => {
         >
           {renderSwitch(mainDisplay)}
         </animated.div>
-      ))}
+      ))} */}
+      <EmoteDispatch mancha={mancha} emoCue={emoCue} />
 
       {transition2((style, item) => (
         <animated.div
