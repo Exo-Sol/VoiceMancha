@@ -17,3 +17,26 @@
   overflow: scroll;
   grid-row: 2/7;
 }
+
+.emoteSwitch {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 7vh;
+
+  overflow: visible;
+  grid-row: 1/4;
+}
+
+.giff {
+  margin-bottom: 20px;
+}
+.giffmario {
+  height: 5vh;
+  margin-bottom: 30px;
+}
+
+.giffRaper {
+  height: 90%;
+}

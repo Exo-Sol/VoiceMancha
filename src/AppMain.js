@@ -296,8 +296,9 @@ const AppMain = ({ voiceCommands }) => {
           {renderSwitch(mainDisplay)}
         </animated.div>
       ))} */}
-      <EmoteDispatch mancha={mancha} emoCue={emoCue} />
-
+      <Suspense fallback={<div>achivement loading...</div>}>
+        <EmoteDispatch mancha={mancha} emoCue={emoCue} dialInput={dialInput} />
+      </Suspense>
       {transition2((style, item) => (
         <animated.div
           className={
