@@ -15,6 +15,8 @@ import clear from "./icons/clear.png";
 import menu from "./icons/menu.png";
 import dial from "./icons/dial.png";
 
+import coinAudio from "./sounds/coin.mp3";
+
 import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
@@ -117,6 +119,7 @@ const AppMain = ({ voiceCommands }) => {
         },
       ]);
     }
+    new Audio(coinAudio).play();
   };
 
   const multipleInputsVoice = (inputs) => {
@@ -140,6 +143,7 @@ const AppMain = ({ voiceCommands }) => {
         },
       ]);
     });
+    new Audio(coinAudio).play();
   };
 
   //////////////////////////////////////////////////////////////////
@@ -185,6 +189,7 @@ const AppMain = ({ voiceCommands }) => {
           id: new Date().getTime(),
         },
       ]);
+      new Audio(coinAudio).play();
     }
     return () => {};
   }, [listening]);

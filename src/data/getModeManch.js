@@ -84,9 +84,19 @@ const getModeManch = (chosen = "Total") => {
     });
   });
 
-  console.log(manchaPerc);
+  console.log(allmanch);
 
-  return { manchaMods, manchaPerc, numAll, totalManch, manchaValues, mothObj };
+  const maxManch = Math.max.apply(Math, allmanch);
+
+  return {
+    manchaMods,
+    manchaPerc,
+    numAll,
+    totalManch,
+    manchaValues,
+    mothObj,
+    maxManch,
+  };
 };
 
 export default getModeManch;

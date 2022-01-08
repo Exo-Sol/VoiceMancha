@@ -16,11 +16,20 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput }) => {
 
   const retrivedDates = Object.keys(storage);
 
-  const { manchaMods, manchaPerc, numAll, totalManch, manchaValues, mothObj } =
-    getModeManch();
+  const {
+    manchaMods,
+    manchaPerc,
+    numAll,
+    totalManch,
+    manchaValues,
+    mothObj,
+    maxManch,
+  } = getModeManch();
 
   const percAllManch1 = parseFloat((totalManch / numAll).toFixed(2));
   const percAllManch = Math.round((percAllManch1 + Number.EPSILON) * 100) / 100;
+
+  console.log(mancha);
 
   /// last three zero situation
 
@@ -40,7 +49,10 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput }) => {
   }
 
   const lastThree0 = () => {
-    if (lastFive) {
+    if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
+      emoCue(true);
+      return <GifEmote type={"topManch"} />;
+    } else if (lastFive) {
       if (
         lastFive[0] < percAllManch &&
         lastFive[1] < percAllManch &&
