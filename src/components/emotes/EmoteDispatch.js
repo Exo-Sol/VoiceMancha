@@ -49,65 +49,67 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput }) => {
   }
 
   const lastThree0 = () => {
-    if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
-      emoCue(true);
-      return <GifEmote type={"topManch"} />;
-    } else if (lastFive) {
-      if (
-        lastFive[0] < percAllManch &&
-        lastFive[1] < percAllManch &&
-        lastFive[2] < percAllManch &&
-        lastFive[3] < percAllManch &&
-        lastFive[4] < percAllManch
-      ) {
+    if (mancha.length) {
+      if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
         emoCue(true);
-        return <GifEmote type={"belowAvreage5"} />;
-      } else if (
-        lastFive[0] > percAllManch &&
-        lastFive[1] > percAllManch &&
-        lastFive[2] > percAllManch &&
-        lastFive[3] > percAllManch &&
-        lastFive[4] > percAllManch
-      ) {
-        emoCue(true);
-        return <GifEmote type={"aboveAvreage5"} />;
-      } else if (
-        lastThree[0] < percAllManch &&
-        lastThree[1] < percAllManch &&
-        lastThree[2] < percAllManch
-      ) {
-        emoCue(true);
-        return <GifEmote type={"belowAvreage3"} />;
-      } else if (
-        lastThree[0] > percAllManch &&
-        lastThree[1] > percAllManch &&
-        lastThree[2] > percAllManch
-      ) {
-        emoCue(true);
-        return <GifEmote type={"aboveAvreage3"} />;
-      } else {
-        emoCue(false); // ovo false !!!
-        return false; // i ovo
-      }
-    } else if (lastThree) {
-      if (
-        lastThree[0] < percAllManch &&
-        lastThree[1] < percAllManch &&
-        lastThree[2] < percAllManch
-      ) {
-        emoCue(true);
-        return <GifEmote type={"belowAvreage3"} />;
-      } else if (
-        lastThree[0] > percAllManch &&
-        lastThree[1] > percAllManch &&
-        lastThree[2] > percAllManch
-      ) {
-        emoCue(true);
-        return <GifEmote type={"aboveAvreage3"} />;
-      } else {
-        emoCue(false); // ovo false !!!
-        return false; // i ovo
-      }
+        return <GifEmote type={"topManch"} />;
+      } else if (lastFive) {
+        if (
+          lastFive[0] < percAllManch &&
+          lastFive[1] < percAllManch &&
+          lastFive[2] < percAllManch &&
+          lastFive[3] < percAllManch &&
+          lastFive[4] < percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"belowAvreage5"} />;
+        } else if (
+          lastFive[0] > percAllManch &&
+          lastFive[1] > percAllManch &&
+          lastFive[2] > percAllManch &&
+          lastFive[3] > percAllManch &&
+          lastFive[4] > percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"aboveAvreage5"} />;
+        } else if (
+          lastThree[0] < percAllManch &&
+          lastThree[1] < percAllManch &&
+          lastThree[2] < percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"belowAvreage3"} />;
+        } else if (
+          lastThree[0] > percAllManch &&
+          lastThree[1] > percAllManch &&
+          lastThree[2] > percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"aboveAvreage3"} />;
+        } else {
+          emoCue(false); // ovo false !!!
+          return false; // i ovo
+        }
+      } else if (lastThree) {
+        if (
+          lastThree[0] < percAllManch &&
+          lastThree[1] < percAllManch &&
+          lastThree[2] < percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"belowAvreage3"} />;
+        } else if (
+          lastThree[0] > percAllManch &&
+          lastThree[1] > percAllManch &&
+          lastThree[2] > percAllManch
+        ) {
+          emoCue(true);
+          return <GifEmote type={"aboveAvreage3"} />;
+        } else {
+          emoCue(false); // ovo false !!!
+          return false; // i ovo
+        }
+      } else return false;
     } else return false;
   };
 
