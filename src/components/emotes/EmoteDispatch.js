@@ -3,7 +3,7 @@ import styles3 from "../../css/emote.module.scss";
 import GifEmote from "./GifEmote";
 import getModeManch from "../../data/getModeManch";
 
-const EmoteDispatch = ({ mancha, emoCue, dialInput }) => {
+const EmoteDispatch = ({ mancha, emoCue, dialInput, edit }) => {
   const storage = { ...localStorage };
 
   const [unmount, setUnmount] = useState(() => false);
@@ -50,7 +50,10 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput }) => {
 
   const lastThree0 = () => {
     if (mancha.length) {
-      if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
+      if (edit) {
+        emoCue(false); // ovo false !!!
+        return false;
+      } else if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
         emoCue(true);
         return <GifEmote type={"topManch"} />;
       } else if (lastFive) {

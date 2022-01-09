@@ -275,7 +275,7 @@ const AppMain = ({ voiceCommands }) => {
           )}
         </div>
       </div>
-      {showEmote
+      {showEmote && !edit
         ? false
         : transitions((style, item) => (
             <animated.div
@@ -302,7 +302,12 @@ const AppMain = ({ voiceCommands }) => {
         </animated.div>
       ))} */}
       <Suspense fallback={<div>achivement loading...</div>}>
-        <EmoteDispatch mancha={mancha} emoCue={emoCue} dialInput={dialInput} />
+        <EmoteDispatch
+          mancha={mancha}
+          emoCue={emoCue}
+          dialInput={dialInput}
+          edit={edit}
+        />
       </Suspense>
       {transition2((style, item) => (
         <animated.div
