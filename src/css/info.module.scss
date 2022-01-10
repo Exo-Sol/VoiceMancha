@@ -208,6 +208,7 @@
 
 .globalDiv {
   background-color: #cfe2e6;
+  color: #1c2229;
   height: 100vh;
   display: flex;
   justify-items: center;
@@ -218,6 +219,7 @@
 
   .globalTitle {
     margin-bottom: 10vh;
+    color: #1c2229;
   }
 
   .globaUlWrapper {
@@ -247,22 +249,22 @@
 }
 
 #allDilivered {
-  color: rgb(30, 56, 119);
+  color: #aa6a25;
 }
 
 #allPerc {
-  color: #c94f4b;
+  color: #a82b29;
   display: inline;
 }
 
 .perc {
   display: flex;
-  color: #c94f4b;
+  color: #a82b29;
 }
 
 .values {
   display: flex;
-  color: rgb(30, 56, 119);
+  color: #aa6a25;
 }
 
 .mods {
@@ -283,4 +285,10 @@
 
 #fakeDiv {
   height: 7vh;
+}
+
+.weekDayPerc {
+  font-size: 0.7em;
+  margin-top: 20px;
+  opacity: 0.5;
 }

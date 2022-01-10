@@ -49,7 +49,7 @@ const GlobalStats = ({ resetToMain }) => {
   });
 
   const displayFwd = () => {
-    if (display === "Total") {
+    if (display === "Total" && !singleEntry) {
       setDisplay(() => relevantMonths[0]);
     } else if (display !== relevantMonths[relevantMonths.length - 1]) {
       relevantMonths.forEach((ele, ind) => {
@@ -63,7 +63,7 @@ const GlobalStats = ({ resetToMain }) => {
   };
 
   const displayBack = () => {
-    if (display === "Total") {
+    if (display === "Total" && !singleEntry) {
       setDisplay(() => relevantMonths[relevantMonths.length - 1]);
     } else if (display !== relevantMonths[0]) {
       relevantMonths.forEach((ele, ind) => {
@@ -86,7 +86,14 @@ const GlobalStats = ({ resetToMain }) => {
   console.log(mothObj);
 
   const percAllManch1 = parseFloat((totalManch / numAll).toFixed(2));
-  const percAllManch = Math.round((percAllManch1 + Number.EPSILON) * 100) / 100;
+
+  const checkPerc = () => {
+    const percAllManch =
+      Math.round((percAllManch1 + Number.EPSILON) * 100) / 100;
+
+    if (!isNaN(percAllManch)) return percAllManch;
+    else return 0;
+  };
 
   return transitions((style, item) => (
     <animated.div className={styles2.globalDiv} {...handlers} style={style}>
@@ -100,7 +107,7 @@ const GlobalStats = ({ resetToMain }) => {
         {`${totalManch}`}
       </h4>
       <h4 id={styles2.allDilivered}>{`broj dostava : ${numAll}`}</h4>
-      <h4 id={styles2.allPerc}>{`prosijek  : ${percAllManch}`}</h4>
+      <h4 id={styles2.allPerc}>{`prosijek  : ${checkPerc()}`}</h4>
       <div className={styles2.globaUlWrapper}>
         <GlobalStatsList list={manchaMods} type="mods" />
         <GlobalStatsList list={manchaPerc} type="perc" />

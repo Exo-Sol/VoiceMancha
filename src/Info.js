@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PercentageToday from "./infoComponents/PercentageToday";
+import AvgToday from "./infoComponents/AvgToday";
 import MonthlyDisplay from "./infoComponents/MonthlyDisplay";
 import DayEntriesNum from "./infoComponents/DayEntriesNum";
 import ListOfCommands from "./infoComponents/ListOfCommands";
-import PercDayWeek from "./infoComponents/PercDayWeek";
+
 import About from "./infoComponents/About";
 import GlobalStats from "./infoComponents/GlobalStats";
 // import styles from "./css/info.module.scss";
@@ -34,8 +34,8 @@ const Info = ({ command, resetToMain, redirect }) => {
 
   const renderSwitch = (com) => {
     switch (com) {
-      case "prosjek danas":
-        return setChangeInfo(<PercentageToday resetToMain={resetToMain} />);
+      case "prosjek":
+        return setChangeInfo(<AvgToday resetToMain={resetToMain} />);
 
       case "mjesečni prikaz":
         return setChangeInfo(<MonthlyDisplay resetToMain={resetToMain} />);
@@ -48,8 +48,6 @@ const Info = ({ command, resetToMain, redirect }) => {
       case "info":
         return setChangeInfo(<About resetToMain={resetToMain} />);
 
-      case "prosjek po danima":
-        return setChangeInfo(<PercDayWeek resetToMain={resetToMain} />);
       case "globalna statistika":
         return setChangeInfo(<GlobalStats resetToMain={resetToMain} />);
       default:

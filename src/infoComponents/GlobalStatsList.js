@@ -10,7 +10,7 @@ const GlobalStatsList = ({ list, type }) => {
       {list.map((ele, ind) => (
         <ul className={styles2.globalUl} key={ind}>
           <li className={styles2[type]}>
-            {type === "values" ? `(${ele})` : `${ele}`}
+            {type === "values" ? `( ${ele} )` : `${ele}`}
             {type === "perc" ? "%" : ""}
             {type === "mods" ? " kn" : ""}
           </li>

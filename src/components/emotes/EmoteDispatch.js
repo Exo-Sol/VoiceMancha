@@ -12,17 +12,11 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput, edit }) => {
     setUnmount(false);
   }, [mancha]);
 
-  let allmanch = [];
-
-  const retrivedDates = Object.keys(storage);
-
   const {
-    manchaMods,
     manchaPerc,
     numAll,
     totalManch,
-    manchaValues,
-    mothObj,
+
     maxManch,
   } = getModeManch();
 
@@ -45,7 +39,6 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput, edit }) => {
 
   if (manche.length >= 5) {
     var lastFive = manche.slice(-5);
-    console.log();
   }
 
   const lastThree0 = () => {
@@ -55,6 +48,7 @@ const EmoteDispatch = ({ mancha, emoCue, dialInput, edit }) => {
         return false;
       } else if (mancha[mancha.length - 1].manch > maxManch && maxManch > 20) {
         emoCue(true);
+        console.log("did i get it");
         return <GifEmote type={"topManch"} />;
       } else if (lastFive) {
         if (

@@ -5,7 +5,7 @@ import { useTransition, animated } from "react-spring";
 const ListOfCommands = ({ redirect }) => {
   const list = [
     "mjesečni prikaz",
-    "prosjek danas",
+    "prosjek",
     "info",
     "broj dostava",
     "globalna statistika",

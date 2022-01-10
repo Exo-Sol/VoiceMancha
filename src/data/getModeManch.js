@@ -76,6 +76,16 @@ const getModeManch = (chosen = "Total") => {
     12: [],
   };
 
+  let dayOfWeekObj = {
+    Pon: [], // [0]
+    Uto: [],
+    Sri: [],
+    Cet: [],
+    Pet: [],
+    Sub: [],
+    Ned: [],
+  };
+
   retrivedDates.forEach((e) => {
     let parsedStorage = JSON.parse(storage[e]);
     parsedStorage.map((ele) => {
@@ -84,7 +94,16 @@ const getModeManch = (chosen = "Total") => {
     });
   });
 
-  console.log(allmanch);
+  retrivedDates.forEach((e) => {
+    let parsedStorage = JSON.parse(storage[e]);
+    parsedStorage.map((ele) => {
+      let x = ele.timeObj.weekDay;
+      dayOfWeekObj[x].push(ele.manch);
+    });
+  });
+
+  console.log(mothObj);
+  console.log(dayOfWeekObj);
 
   const maxManch = Math.max.apply(Math, allmanch);
 
@@ -96,6 +115,7 @@ const getModeManch = (chosen = "Total") => {
     manchaValues,
     mothObj,
     maxManch,
+    dayOfWeekObj,
   };
 };
 

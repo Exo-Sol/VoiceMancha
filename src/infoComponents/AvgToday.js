@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { TimeStamp } from "../TimeStamp";
 import styles2 from "../css/info.module.scss";
 import { useTransition, animated } from "react-spring";
 
-const PercentageToday = ({ resetToMain }) => {
+const AvgDayOfWeek = React.lazy(() => import("./AvgDayOfWeek"));
+
+const AvgOfMonth = React.lazy(() => import("./AvgOfMonth"));
+
+const AvgToday = ({ resetToMain }) => {
   const [percToday, setPercToday] = useState(0);
 
   const dateToday = `${TimeStamp().month}.${TimeStamp().day}`;
@@ -40,10 +44,6 @@ const PercentageToday = ({ resetToMain }) => {
     });
   }, []);
 
-  setTimeout(() => {
-    resetToMain();
-  }, [5000]);
-
   const reset = () => {
     resetToMain();
   };
@@ -62,7 +62,26 @@ const PercentageToday = ({ resetToMain }) => {
 
   return transitions((style, item) => (
     <animated.div onClick={reset} className={styles2.percToday} style={style}>
-      <div>{percFix(percToday)}</div>
+      <div style={{ marginBottom: "40px", fontSize: "0.9em" }}>
+        {" "}
+        today : {percFix(percToday)}
+      </div>
+      <Suspense
+        fallback={
+          <div className={styles2.weekDayPerc}>
+            `all ${TimeStamp().weekDay} : loading...`
+          </div>
+        }
+      >
+        <AvgDayOfWeek percFix={percFix} />
+      </Suspense>
+      <Suspense
+        fallback={
+          <div className={styles2.weekDayPerc}>`this month: loading...`</div>
+        }
+      >
+        <AvgOfMonth percFix={percFix} />
+      </Suspense>
     </animated.div>
   ));
   // <div onClick={reset} className={styles2.percToday}>
@@ -70,4 +89,4 @@ const PercentageToday = ({ resetToMain }) => {
   // </div>
 };
 
-export default PercentageToday;
+export default AvgToday;

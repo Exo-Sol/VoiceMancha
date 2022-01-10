@@ -8,7 +8,7 @@ function App() {
   const [commandFromList, setCommandFromList] = useState("");
   const commands = [
     "mjesečni prikaz",
-    "prosjek danas",
+    "prosjek",
     "info",
     "broj dostava",
     "glasovne naredbe",

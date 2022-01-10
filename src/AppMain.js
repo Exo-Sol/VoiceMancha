@@ -20,11 +20,14 @@ import coinAudio from "./sounds/coin.mp3";
 import BarChart from "./components/Bar";
 import Total from "./components/Total";
 import List from "./components/List";
-import EmoteDispatch from "./components/emotes/EmoteDispatch";
 
 import DialInput from "./components/dialInput/DialInput";
 const ModeMancha = React.lazy(() =>
   import("./components/dialInput/ModeMancha")
+);
+
+const EmoteDispatch = React.lazy(() =>
+  import("./components/emotes/EmoteDispatch")
 );
 
 const AppMain = ({ voiceCommands }) => {
@@ -290,17 +293,6 @@ const AppMain = ({ voiceCommands }) => {
             </animated.div>
           ))}
 
-      {/* 
-      {transitions((style, item) => (
-        <animated.div
-          className={dialInput ? styles.switchManchaList : styles.manchaList}
-          id={mainDisplay === 2 ? styles.swichOwerflow : undefined}
-          onClick={changeMainDisply}
-          style={style}
-        >
-          {renderSwitch(mainDisplay)}
-        </animated.div>
-      ))} */}
       <Suspense fallback={<div>achivement loading...</div>}>
         <EmoteDispatch
           mancha={mancha}
